@@ -24,12 +24,14 @@ io.on('connection', socket => {
       'Admin', 'New user joined'
     ));
 
-  socket.on('createMessage', (message) => {
-    // io.emits to all connections - socket single connection
+  socket.on('createMessage', (message, callback) => {
+    // io.emits to all connections 
     io.emit('newMessage', generateMessage(
       message.from,
       message.text
     ));
+    // Data sent back by server after receiving message
+    callback('heeeyy');
   });
 
   socket.on('disconnect', () => {
