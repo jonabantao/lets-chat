@@ -1,9 +1,12 @@
 import React from 'react';
-import TestForm from '../testform';
+import TestChatBox from '../testform';
 import { shallow } from 'enzyme';
 
 describe("TestForm", () => {
-  test("should handle form submit", () => {
-    expect().toEqual(2);
+  const testForm = shallow(<TestChatBox />);
+  const filters = testForm.find('input');
+
+  test('should handle form submit', () => {
+    expect(filters.length).toEqual(1);
   });
 });
