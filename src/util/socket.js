@@ -9,13 +9,19 @@ socket.on('disconnect', function () {
   console.log('disconnected');
 });
 
-socket.on('newMessage', function (email) {
-  console.log(email);
-});
+// Listener for messages
+export const receiveMessage = callback => {
+  socket.on('newMessage', (message) => {
+    callback(message);
+  });
+};
 
-socket.emit('createMessage', {
-  from: 'Test',
-  text: 'This is a test messsage'
-}, function (data) {
-  console.log(data);
-});
+// Used to send message in react form
+export const sendMessage = (text) => {
+  socket.emit('createMessage', {
+    from: 'Test',
+    text
+  }, (data) => {
+    // console.log(data);
+  });
+};
