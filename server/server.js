@@ -13,7 +13,7 @@ const io = socketIO(server);
 app.use(express.static(publicPath));
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(publicPath, 'dist/index.html'));
+  res.sendFile(path.join(publicPath, '/index.html'));
 });
 
 io.on('connection', socket => {
