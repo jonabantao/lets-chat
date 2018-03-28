@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { sendMessage } from '../util/socket';
+import { sendMessage, createLocationMessage } from '../util/socket';
 
 class TestForm extends Component {
   constructor(props) {
@@ -12,6 +12,7 @@ class TestForm extends Component {
 
     this.handleUpdate = this.handleUpdate.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSendLocation = this.handleSendLocation.bind(this);
     this.clearForm = this.clearForm.bind(this);
   }
 
@@ -27,6 +28,20 @@ class TestForm extends Component {
     }
   }
 
+  handleSendLocation(e) {
+    e.preventDefault();
+
+    if (!navigator.geolocation) {
+      return alert('Geolocation not supported by browser.');
+    }
+
+    navigator.geolocation.getCurrentPosition(position => {
+      createLocationMessage(position);
+    }, () => {
+      alert('Unable to fetch location.');
+    });
+  }
+
   clearForm() {
     this.setState({ form: '' });
   }
@@ -34,16 +49,19 @@ class TestForm extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <input 
-          name="message" 
-          type="text" 
-          value={this.state.form}
-          placeholder="Message" 
-          onChange={this.handleUpdate}
-        />
-        <button>Send</button>
-      </form>
+      <React.Fragment>
+        <form onSubmit={this.handleSubmit}>
+          <input
+            name="message"
+            type="text"
+            value={this.state.form}
+            placeholder="Message"
+            onChange={this.handleUpdate}
+          />
+          <button>Send</button>
+        </form>
+        <button onClick={this.handleSendLocation}>Send Location</button>
+      </React.Fragment>
     );
   }
 }

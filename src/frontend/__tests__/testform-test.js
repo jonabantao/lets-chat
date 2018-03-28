@@ -1,9 +1,9 @@
 import React from 'react';
-import TestChatBox from '../testform';
+import TestForm from '../testform';
 import { shallow } from 'enzyme';
 
-describe("TestForm", () => {
-  const testForm = shallow(<TestChatBox />);
+describe('TestForm', () => {
+  const testForm = shallow(<TestForm />);
   const filters = testForm.find('input');
 
   test('should handle form submit', () => {

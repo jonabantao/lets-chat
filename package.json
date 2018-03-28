@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "start": "node server/server.js",
-    "watch": "webpack -w --mode development"
+    "watch": "webpack -w --mode development",
+    "nodemon": "nodemon server/server.js"
   },
   "engines": {
     "node": "9.8.0",
@@ -35,6 +36,6 @@
     "webpack-cli": "^2.0.12"
   },
   "jest": {
-    "setupTestFrameworkScriptFile": "<rootDir>/src/setUpEnzymeAdapter.js"
+    "setupFiles": ["./src/jestsetup.js"]
   }
 }

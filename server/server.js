@@ -3,7 +3,7 @@ const http = require('http');
 const express = require('express');
 const socketIO = require('socket.io');
 
-const { generateMessage } = require('./utils/message');
+const { generateMessage, generateLocationMessage } = require('./utils/message');
 const publicPath = path.join(__dirname, '../dist');
 const port = process.env.PORT || 3000;
 const app = express();
@@ -12,8 +12,8 @@ const io = socketIO(server);
 
 app.use(express.static(publicPath));
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist/index.html'));
+app.get('/', (req, res) => {
+  res.sendFile(path.join(publicPath, 'dist/index.html'));
 });
 
 io.on('connection', socket => {
@@ -36,6 +36,14 @@ io.on('connection', socket => {
     ));
     // Data sent back by server after receiving message
     callback('heeeyy');
+  });
+  
+  socket.on('createLocationMessage', ({ latitude, longitude }) => {
+    io.emit('newMessage', generateLocationMessage(
+      'Admin',
+      latitude,
+      longitude
+    ));
   });
 
   socket.on('disconnect', () => {

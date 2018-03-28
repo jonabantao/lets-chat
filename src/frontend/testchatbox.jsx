@@ -21,15 +21,18 @@ class TestChatBox extends Component {
   updateMessages(message) {
     // Deep merge needed to prevent mutating original state
     const messages = _.merge([], this.state.messages).concat(message);
-
     this.setState({ messages });
   }
 
   render() {
     const chatMessages = this.state.messages.map((message, i) => {
-      return (
-        <li key={i}>{message.from}: {message.text}</li>
-      );
+      return message.hasOwnProperty('url') ?
+        (
+          <li key={i}>
+            {message.from}: <a target="_blank" href={message.url}>My Current Location</a>
+          </li>
+        ) :
+        (<li key={i}>{message.from}: {message.text}</li>);
     });
     
     return (

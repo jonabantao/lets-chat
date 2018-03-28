@@ -25,3 +25,10 @@ export const sendMessage = (text) => {
     // console.log(data);
   });
 };
+
+export const createLocationMessage = pos => {
+  socket.emit('createLocationMessage', {
+    latitude: pos.coords.latitude,
+    longitude: pos.coords.longitude
+  });
+};
