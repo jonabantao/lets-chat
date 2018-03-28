@@ -1,5 +1,5 @@
 const io = require('socket.io-client');
-const socket = io.connect('https://glacial-falls-58864.herokuapp.com/');
+const socket = io();
 
 socket.on('connect', function () {
   console.log('connected');

@@ -8,7 +8,7 @@
     "start": "node server/server.js",
     "watch": "webpack -w --mode development",
     "nodemon": "nodemon server/server.js",
-    "postinstall": "webpack"
+    "postinstall": "webpack --mode production"
   },
   "engines": {
     "node": "9.8.0",
