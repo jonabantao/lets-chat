@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { sendMessage, createLocationMessage } from '../util/socket';
+import { sendMessage, createLocationMessage } from '../../util/socket';
 
 class TestForm extends Component {
   constructor(props) {

@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import _ from 'lodash';
 import moment from 'moment';
 
-import { receiveMessage } from '../util/socket';
+import { receiveMessage } from '../../util/socket';
+
+import LocationMessage from './messages/location_message';
+import TextMessage from './messages/text_message';
 
 class TestChatBox extends Component {
   constructor(props) {
@@ -30,14 +33,18 @@ class TestChatBox extends Component {
       const formattedTime = moment(message.createdAt).format('h:mm a');
       
       return message.hasOwnProperty('url') ?
-        (
-          <li key={i}>
-            {message.from} {formattedTime}: <a target="_blank" href={message.url}>My Current Location</a>
-          </li>
-        ) :
-        (
-          <li key={i}>{message.from} {formattedTime}: {message.text}</li>
-        );
+        <LocationMessage 
+          msgFrom={message.from}
+          msgTime={formattedTime}
+          msgUrl={message.url}
+          key={i}
+        /> :
+        <TextMessage
+          msgFrom={message.from}
+          msgTime={formattedTime}
+          msgText={message.text}
+          key={i}
+        />;
     });
     
     return (

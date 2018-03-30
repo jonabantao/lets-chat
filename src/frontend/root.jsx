@@ -1,9 +1,9 @@
 import React from 'react';
 import socket from '../util/socket';
 
-import TestForm from './testform';
-import TestChatBox from './testchatbox';
-import TestUserList from './testuserlist';
+import TestForm from './components/testform';
+import TestChatBox from './components/testchatbox';
+import TestUserList from './components/testuserlist';
 
 const Root = () => {
   return (
