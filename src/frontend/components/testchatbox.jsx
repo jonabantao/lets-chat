@@ -22,6 +22,10 @@ class TestChatBox extends Component {
     receiveMessage(this.updateMessages);
   }
 
+  scrollToBottom() {
+
+  }
+
   updateMessages(message) {
     // Deep merge needed to prevent mutating original state
     const messages = _.merge([], this.state.messages).concat(message);
@@ -29,6 +33,7 @@ class TestChatBox extends Component {
   }
 
   render() {
+    console.log(this.props);
     const chatMessages = this.state.messages.map((message, i) => {
       const formattedTime = moment(message.createdAt).format('h:mm a');
       
