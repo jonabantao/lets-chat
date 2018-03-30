@@ -7,7 +7,8 @@ class TestForm extends Component {
     super(props);
     
     this.state = {
-      form: ''
+      form: '',
+      locationDisabled: false,
     };
 
     this.handleUpdate = this.handleUpdate.bind(this);
@@ -35,10 +36,14 @@ class TestForm extends Component {
       return alert('Geolocation not supported by browser.');
     }
 
+    this.setState({ locationDisabled: true });
+
     navigator.geolocation.getCurrentPosition(position => {
       createLocationMessage(position);
+      this.setState({ locationDisabled: false });
     }, () => {
       alert('Unable to fetch location.');
+      this.setState({ locationDisabled: false });
     });
   }
 
@@ -48,8 +53,12 @@ class TestForm extends Component {
   
 
   render() {
+    const locButtonMsg = this.state.locationDisabled ?
+      'Sending Location...' :
+      'Send Location';
+
     return (
-      <React.Fragment>
+      <footer className="chat__footer">
         <form onSubmit={this.handleSubmit}>
           <input
             name="message"
@@ -57,11 +66,18 @@ class TestForm extends Component {
             value={this.state.form}
             placeholder="Message"
             onChange={this.handleUpdate}
+            autoComplete="off"
+            autoFocus
           />
           <button>Send</button>
         </form>
-        <button onClick={this.handleSendLocation}>Send Location</button>
-      </React.Fragment>
+        <button 
+          onClick={this.handleSendLocation}
+          disabled={this.state.locationDisabled}
+        >
+          {locButtonMsg}
+        </button>
+      </footer>
     );
   }
 }

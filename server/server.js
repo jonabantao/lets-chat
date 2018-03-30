@@ -35,7 +35,7 @@ io.on('connection', socket => {
       message.text
     ));
     // Data sent back by server after receiving message
-    callback('heeeyy');
+    callback();
   });
   
   socket.on('createLocationMessage', ({ latitude, longitude }) => {

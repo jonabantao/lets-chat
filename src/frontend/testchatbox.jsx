@@ -32,13 +32,15 @@ class TestChatBox extends Component {
             {message.from}: <a target="_blank" href={message.url}>My Current Location</a>
           </li>
         ) :
-        (<li key={i}>{message.from}: {message.text}</li>);
+        (
+          <li key={i}>{message.from}: {message.text}</li>
+        );
     });
     
     return (
-      <ul>
+      <ol className="chat__messages">
         {chatMessages}
-      </ul>
+      </ol>
     );
   }
 }

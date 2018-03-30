@@ -3,12 +3,16 @@ import socket from '../util/socket';
 
 import TestForm from './testform';
 import TestChatBox from './testchatbox';
+import TestUserList from './testuserlist';
 
 const Root = () => {
   return (
     <React.Fragment>
-      <TestChatBox />
-      <TestForm />
+      <TestUserList />
+      <section className="chat__main">
+        <TestChatBox />
+        <TestForm />
+      </section>
     </React.Fragment>
     
   );
