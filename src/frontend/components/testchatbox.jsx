@@ -15,6 +15,8 @@ class TestChatBox extends Component {
       messages: []
     };
 
+    this.messages = React.createRef();
+
     this.updateMessages = this.updateMessages.bind(this);
   }
 
@@ -33,7 +35,7 @@ class TestChatBox extends Component {
   }
 
   render() {
-    console.log(this.props);
+    console.log(this.messages);
     const chatMessages = this.state.messages.map((message, i) => {
       const formattedTime = moment(message.createdAt).format('h:mm a');
       
@@ -53,7 +55,7 @@ class TestChatBox extends Component {
     });
     
     return (
-      <ol className="chat__messages">
+      <ol ref={this.messages} className="chat__messages">
         {chatMessages}
       </ol>
     );
