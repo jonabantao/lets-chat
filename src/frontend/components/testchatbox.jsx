@@ -24,8 +24,25 @@ class TestChatBox extends Component {
     receiveMessage(this.updateMessages);
   }
 
-  scrollToBottom() {
+  componentDidUpdate() {
+    this.scrollToBottom();
+  }
 
+  scrollToBottom() {
+    // React way of grabbing DOM nodes
+    const messages = this.messages.current;
+    const newMsg = messages.lastChild;
+    const lastMsg = newMsg.previousSibling;
+
+    const { clientHeight, scrollTop, scrollHeight } = messages;
+    const newMsgHeight = newMsg ? newMsg.clientHeight : 0;
+    const lastMsgHeight = lastMsg ? lastMsg.clientHeight : 0;
+    const totalHeight = [clientHeight, scrollTop, newMsgHeight, lastMsgHeight]
+                          .reduce((sum, height) => sum + height);
+
+    if (totalHeight >= scrollHeight) {
+      messages.scrollTop = scrollHeight;
+    }
   }
 
   updateMessages(message) {
@@ -35,7 +52,7 @@ class TestChatBox extends Component {
   }
 
   render() {
-    console.log(this.messages);
+    console.log(this);
     const chatMessages = this.state.messages.map((message, i) => {
       const formattedTime = moment(message.createdAt).format('h:mm a');
       
