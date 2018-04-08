@@ -9,7 +9,7 @@ describe('generateMessage', () => {
     expect(message).toEqual(expect.objectContaining({
       from: 'Test',
       text: 'Message',
-      createdAt: expect.any(Number)
+      createdAt: expect.any(Number),
     }));
   });
 });
@@ -24,7 +24,7 @@ describe('generateLocationMessage', () => {
     expect(message).toEqual(expect.objectContaining({
       from: 'Test',
       url: `https://www.google.com/maps?q=${lat},${lng}`,
-      createdAt: expect.any(Number)
+      createdAt: expect.any(Number),
     }));
   });
 });
