@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import moment from 'moment';
-import { uuidv1 } from 'uuid';
 
 import { receiveMessage } from '../../util/socket';
 
@@ -61,13 +60,13 @@ class TestChatBox extends Component {
           msgFrom={message.from}
           msgTime={formattedTime}
           msgUrl={message.url}
-          key={uuidv1()}
+          key={message.id}
         /> :
         <TextMessage
           msgFrom={message.from}
           msgTime={formattedTime}
           msgText={message.text}
-          key={uuidv1()}
+          key={message.id}
         />;
     });
 
