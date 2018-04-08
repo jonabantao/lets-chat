@@ -5,7 +5,7 @@ import { sendMessage, createLocationMessage } from '../../util/socket';
 class TestForm extends Component {
   constructor(props) {
     super(props);
-    
+
     this.state = {
       form: '',
       locationDisabled: false,
@@ -38,19 +38,21 @@ class TestForm extends Component {
 
     this.setState({ locationDisabled: true });
 
-    navigator.geolocation.getCurrentPosition(position => {
+    navigator.geolocation.getCurrentPosition((position) => {
       createLocationMessage(position);
       this.setState({ locationDisabled: false });
     }, () => {
       alert('Unable to fetch location.');
       this.setState({ locationDisabled: false });
     });
+
+    return null;
   }
 
   clearForm() {
     this.setState({ form: '' });
   }
-  
+
 
   render() {
     const locButtonMsg = this.state.locationDisabled ?
@@ -67,11 +69,10 @@ class TestForm extends Component {
             placeholder="Message"
             onChange={this.handleUpdate}
             autoComplete="off"
-            autoFocus
           />
           <button>Send</button>
         </form>
-        <button 
+        <button
           onClick={this.handleSendLocation}
           disabled={this.state.locationDisabled}
         >

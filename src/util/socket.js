@@ -10,7 +10,7 @@ socket.on('disconnect', function () {
 });
 
 // Listener for messages
-export const receiveMessage = callback => {
+export const receiveMessage = (callback) => {
   socket.on('newMessage', (message) => {
     callback(message);
   });
@@ -20,15 +20,15 @@ export const receiveMessage = callback => {
 export const sendMessage = (text) => {
   socket.emit('createMessage', {
     from: 'Test',
-    text
+    text,
   }, (data) => {
     // console.log(data);
   });
 };
 
-export const createLocationMessage = pos => {
+export const createLocationMessage = (pos) => {
   socket.emit('createLocationMessage', {
     latitude: pos.coords.latitude,
-    longitude: pos.coords.longitude
+    longitude: pos.coords.longitude,
   });
 };

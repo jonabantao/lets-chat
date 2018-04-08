@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import moment from 'moment';
+import { uuidv1 } from 'uuid';
 
 import { receiveMessage } from '../../util/socket';
 
@@ -10,9 +11,9 @@ import TextMessage from './messages/text_message';
 class TestChatBox extends Component {
   constructor(props) {
     super(props);
-    
+
     this.state = {
-      messages: []
+      messages: [],
     };
 
     this.messages = React.createRef();
@@ -38,7 +39,7 @@ class TestChatBox extends Component {
     const newMsgHeight = newMsg ? newMsg.clientHeight : 0;
     const lastMsgHeight = lastMsg ? lastMsg.clientHeight : 0;
     const totalHeight = [clientHeight, scrollTop, newMsgHeight, lastMsgHeight]
-                          .reduce((sum, height) => sum + height);
+      .reduce((sum, height) => sum + height);
 
     if (totalHeight >= scrollHeight) {
       messages.scrollTop = scrollHeight;
@@ -52,25 +53,24 @@ class TestChatBox extends Component {
   }
 
   render() {
-    console.log(this);
-    const chatMessages = this.state.messages.map((message, i) => {
+    const chatMessages = this.state.messages.map((message) => {
       const formattedTime = moment(message.createdAt).format('h:mm a');
-      
-      return message.hasOwnProperty('url') ?
-        <LocationMessage 
+
+      return Object.prototype.hasOwnProperty.call(message, 'url') ?
+        <LocationMessage
           msgFrom={message.from}
           msgTime={formattedTime}
           msgUrl={message.url}
-          key={i}
+          key={uuidv1()}
         /> :
         <TextMessage
           msgFrom={message.from}
           msgTime={formattedTime}
           msgText={message.text}
-          key={i}
+          key={uuidv1()}
         />;
     });
-    
+
     return (
       <ol ref={this.messages} className="chat__messages">
         {chatMessages}

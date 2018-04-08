@@ -1,21 +1,12 @@
 import React from 'react';
-import socket from '../util/socket';
+import { BrowserRouter } from 'react-router-dom';
 
-import TestForm from './components/testform';
-import TestChatBox from './components/testchatbox';
-import TestUserList from './components/testuserlist';
+import App from './app';
 
-const Root = () => {
-  return (
-    <React.Fragment>
-      <TestUserList />
-      <section className="chat__main">
-        <TestChatBox />
-        <TestForm />
-      </section>
-    </React.Fragment>
-    
-  );
-};
+const Root = () => (
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
+);
 
 export default Root;
