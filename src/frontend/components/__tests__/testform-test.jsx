@@ -7,6 +7,6 @@ describe('TestForm', () => {
   const filters = testForm.find('input');
 
   test('should handle form submit', () => {
-    expect(filters.length).toHaveLength(1);
+    expect(filters).toHaveLength(1);
   });
 });
