@@ -1,13 +1,10 @@
 const io = require('socket.io-client');
+
 const socket = io();
 
-socket.on('connect', function () {
-  console.log('connected');
-});
+socket.on('connect');
 
-socket.on('disconnect', function () {
-  console.log('disconnected');
-});
+socket.on('disconnect');
 
 // Listener for messages
 export const receiveMessage = (callback) => {
