@@ -7,6 +7,7 @@ import MainChat from './components/mainchat';
 const App = () => (
   <Switch>
     <Route exact path="/" component={JoinPage} />
+    <Route exact path="/chat" component={MainChat} />
   </Switch>
 );
 

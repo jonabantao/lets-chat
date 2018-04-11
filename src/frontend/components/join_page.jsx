@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 
 class JoinPage extends Component {
   constructor(props) {
@@ -7,6 +8,7 @@ class JoinPage extends Component {
     this.state = {
       name: '',
       room: '',
+      sentForm: false,
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -19,7 +21,8 @@ class JoinPage extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    // TODO: Handle form POST
+
+    this.setState({ sentForm: true });
   }
 
   handleUpdate(e) {
@@ -27,6 +30,20 @@ class JoinPage extends Component {
   }
 
   render() {
+    const { name, room } = this.state;
+
+    if (this.state.sentForm) {
+      return (
+        <Redirect
+          push to={{ // eslint-disable-line
+            pathname: '/chat',
+            name,
+            room,
+          }}
+        />
+      );
+    }
+
     return (
       <main className="centered-form">
         <section className="centered-form__form">
