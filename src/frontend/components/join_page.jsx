@@ -63,11 +63,11 @@ class JoinPage extends Component {
             </div>
             <div className="form-field">
               <h4>Display Name</h4>
-              <input type="text" value={this.state.name} onChange={this.handleUpdate} name="name" />
+              <input type="text" value={this.state.name} onChange={this.handleUpdate} name="name" autoComplete="off" />
             </div>
             <div className="form-field">
               <h4>Room Name</h4>
-              <input type="text" value={this.state.room} onChange={this.handleUpdate} name="room" />
+              <input type="text" value={this.state.room} onChange={this.handleUpdate} name="room" autoComplete="off" />
             </div>
             <div className="form-field">
               <button>Join</button>

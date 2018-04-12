@@ -34,27 +34,29 @@ io.on('connection', (socket) => {
     socket
       .broadcast
       .to(room)
-      .emit('newMessage', generateMessage('Admin', `${name} joined`));
+      .emit('newMessage', generateMessage('Admin', `${name} joined the room.`));
 
     callback();
   });
 
   socket.on('createMessage', (message, callback) => {
-    // io.emits to all connections
-    io.emit('newMessage', generateMessage(
-      message.from,
-      message.text,
-    ));
+    const user = users.getUser(socket.id);
+
+    if (user) {
+      // io.emits to all connections
+      io.to(user.room).emit('newMessage', generateMessage(user.name, message.text));
+    }
+
     // Data sent back by server after receiving message
     callback();
   });
 
   socket.on('createLocationMessage', ({ latitude, longitude }) => {
-    io.emit('newMessage', generateLocationMessage(
-      'Admin',
-      latitude,
-      longitude,
-    ));
+    const user = users.getUser(socket.id);
+
+    if (user) {
+      io.to(user.room).emit('newMessage', generateLocationMessage(user.name, latitude, longitude));
+    }
   });
 
   socket.on('disconnect', () => {

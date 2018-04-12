@@ -1,4 +1,4 @@
-# Let's Chat (CURRENTLY IN PROGRESS)
+# Let's Chat
 [Live Link](https://socketochat.herokuapp.com/)
 ## Technology Used
 * Node and Express
@@ -14,3 +14,5 @@ Special thanks to [AirBnB's JavaScript Style Guide](https://github.com/airbnb/ja
 
 ## Summary
 This is a mini app was created for initially exploring socket.IO. And what better way to explore sockets than creating a basic chat app? Tests were done using Jest and Enyzme as the app progressed.
+
+There is no database in the backend so sessions are non-persistent. Upon reload, users will be redirected back to the join page to sign in. To be possibly added later if lacking a database is to store user info on sessionStorage... maybe.

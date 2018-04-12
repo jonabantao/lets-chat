@@ -27,10 +27,7 @@ export const updateUsers = (callback) => {
 
 // Used to send message in react form
 export const sendMessage = (text) => {
-  socket.emit('createMessage', {
-    from: 'Test',
-    text,
-  }, () => {
+  socket.emit('createMessage', { text }, () => {
     // console.log(data);
   });
 };
