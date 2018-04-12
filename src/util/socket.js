@@ -16,7 +16,12 @@ export const receiveMessage = (callback) => {
 // Initialize new user and room
 export const joinChat = (params) => {
   socket.emit('join', params, () => {
-    console.log('eyyy');
+  });
+};
+
+export const updateUsers = (callback) => {
+  socket.on('updateUserList', (users) => {
+    callback(users);
   });
 };
 

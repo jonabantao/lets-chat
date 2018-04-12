@@ -8,6 +8,7 @@
 * SocketIO
 * Jest
 * Enzyme
+* Geolocation API
 
 Special thanks to [AirBnB's JavaScript Style Guide](https://github.com/airbnb/javascript) for keeping my coding style on track and [Andrew Mead](https://mead.io/) for the template.
 
