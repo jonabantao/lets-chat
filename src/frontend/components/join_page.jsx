@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 
 class JoinPage extends Component {
+  static trimString(str) {
+    return str.replace(/\s+/g, ' ').trim();
+  }
+
   constructor(props) {
     super(props);
 
@@ -13,6 +17,7 @@ class JoinPage extends Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
+    this.redirectToChatRoom = this.redirectToChatRoom.bind(this);
   }
 
   componentDidMount() {
@@ -29,19 +34,24 @@ class JoinPage extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  render() {
-    const { name, room } = this.state;
+  redirectToChatRoom() {
+    const name = JoinPage.trimString(this.state.name);
+    const room = JoinPage.trimString(this.state.room);
 
+    return (
+      <Redirect
+        push to={{ // eslint-disable-line
+          pathname: '/chat',
+          name,
+          room,
+        }}
+      />
+    );
+  }
+
+  render() {
     if (this.state.sentForm) {
-      return (
-        <Redirect
-          push to={{ // eslint-disable-line
-            pathname: '/chat',
-            name,
-            room,
-          }}
-        />
-      );
+      return this.redirectToChatRoom();
     }
 
     return (

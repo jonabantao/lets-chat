@@ -17,11 +17,21 @@ app.get('*', (req, res) => {
 });
 
 io.on('connection', (socket) => {
-  // socket.emit sends to single connection
-  socket.emit('newMessage', generateMessage('Admin', 'Welcome to the chatroom'));
+  socket.on('join', (params, callback) => {
+    socket.join(params.room);
 
-  // socket.broadcast sends to everyone but self
-  socket.broadcast.emit('newMessage', generateMessage('Admin', 'New user joined'));
+    // socket.emit sends to single connection
+    socket
+      .emit('newMessage', generateMessage('Admin', `Welcome to room ${params.room}`));
+
+    // socket.broadcast sends to everyone but self
+    socket
+      .broadcast
+      .to(params.room)
+      .emit('newMessage', generateMessage('Admin', `${params.name} joined`));
+
+    callback();
+  });
 
   socket.on('createMessage', (message, callback) => {
     // io.emits to all connections

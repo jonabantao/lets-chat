@@ -6,9 +6,17 @@ import TestForm from './testform';
 import TestChatBox from './testchatbox';
 import TestUserList from './testuserlist';
 
+import { joinChat } from '../../util/socket';
+
 class MainChat extends Component {
   componentDidMount() {
-    document.title = `Let's Chat | ${this.props.location.room}`;
+    const { name, room } = this.props.location;
+    const params = { name, room };
+
+    if (name && room) {
+      document.title = `Let's Chat | ${this.props.location.room}`;
+      joinChat(params);
+    }
   }
 
   render() {
