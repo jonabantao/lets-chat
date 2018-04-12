@@ -1,7 +1,9 @@
-# Let's Chat
+# Let's Chat (CURRENTLY IN PROGRESS)
+[Live Link](https://socketochat.herokuapp.com/)
 ## Technology Used
 * Node and Express
 * React
+* React Router
 * Webpack
 * SocketIO
 * Jest
