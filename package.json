@@ -1,7 +1,7 @@
 {
   "name": "chat-app",
   "version": "1.0.0",
-  "description": "",
+  "description": "[Live Link](https://socketochat.herokuapp.com/) ## Technology Used * Node and Express * React * React Router * Webpack * SocketIO * Jest * Enzyme * Geolocation API",
   "main": "index.js",
   "scripts": {
     "test": "jest",
@@ -54,5 +54,9 @@
     "setupFiles": [
       "./src/jestsetup.js"
     ]
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/jonabantao/lets-chat/issues"
+  },
+  "homepage": "https://github.com/jonabantao/lets-chat#readme"
 }
